@@ -14,6 +14,7 @@ class linkedList{
         this.head = new Node(data, this.head)
         this.size++
     }
+    
 
     insertLast(data){
         let node = new Node(data)
