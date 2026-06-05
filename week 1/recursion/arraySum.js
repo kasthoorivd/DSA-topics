@@ -5,5 +5,5 @@ function arraySum(arr,index = 0){
     return arr[index] + arraySum(arr,index+1)
 }
 
-let arr = [1,2,3,4]
+let arr = [1,2,3]
 console.log(arraySum(arr))
