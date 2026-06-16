@@ -10,3 +10,20 @@ function palindrome(a){
 }
 console.log(palindrome('madam'))
 console.log(palindrome('hello'))
+
+function first(str){
+    let freq ={}
+    for(let s of str){
+        freq[s] = (freq[s] || 0) + 1
+    }
+    console.log(freq)
+    
+   for(let i= str.length-1;i>=0;i--){
+      if(freq[str[i]]==1){
+          return str[i]
+      }
+   }
+}
+
+
+console.log(first('hello'))
