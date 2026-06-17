@@ -228,5 +228,136 @@ list.append(4)
 list.indexDelete(1)
 list.print()
 
+//doubly linkedlist
+
+class Node{
+    constructor(data){
+        this.data = data 
+        this.next = null
+        this.prev = null
+    }
+    
+}
+
+class doublylinkedlist{
+    constructor(){
+        this.head = null
+        this.size = 0
+    }
+    
+    isEmpty(){
+        return this.size == 0
+    }
+    
+    append(data){
+        let node = new Node(data)
+        if(this.isEmpty()){
+            this.head = node
+        }else{
+            let curr = this.head 
+            while(curr.next){
+                curr = curr.next 
+            }
+            curr.next = node
+            node.prev = curr
+            
+        }
+        this.size++
+    }
+    
+    prepend(data){
+        let node = new Node(data)
+        if(this.isEmpty()){
+            this.head = node
+            
+        }else{
+            node.next = this.head 
+            this.head.prev = node
+            this.head = node
+        }
+        this.size++
+    }
+    
+  delete(data){
+      if(this.head.data == data){
+          this.head = this.head.next 
+          if(this.head){
+              this.head.prev = null
+          }
+          this.size--
+      }else{
+          let curr = this.head 
+          while(curr.next){
+              if(curr.next.data == data){
+                  let node = curr.next 
+                  curr.next = node.next
+                  
+                  if(curr.next){
+                      curr.next.prev = curr
+                  }
+                  this.size--
+              }
+                  curr = curr.next
+          }
+      }
+  }
+    
+    insert(data,index){
+        let node = new Node(data)
+        if(index<0 || index> this.size){
+            return null
+        }
+        if(index == 0){
+            node.next = this.head 
+            this.head.prev = node
+            this.head = node
+            this.size++
+        }else{
+            let curr = this.head 
+            for(let i=0;i<index-1;i++){
+                curr = curr.next
+            }
+            node.next = curr.next 
+            curr.next.prev = node
+            node.prev = curr
+            curr.next = node
+        }
+        this.size++
+    }
+   reverse(){
+       let curr = this.head 
+       let temp = null
+       while(curr){
+           temp = curr.prev 
+           curr.prev = curr.next 
+           curr.next = temp
+           curr = curr.prev
+       }
+       this.head = temp.prev
+   }
+    print(){
+        let curr = this.head 
+        while(curr){
+            console.log(curr.data)
+            curr = curr.next
+        }
+    }
+}
+
+
+const list = new doublylinkedlist()
+list.append(1)
+list.append(2)
+list.append(4)
+list.append(3)
+list.append(3)
+list.delete(3)
+list.insert(5,2)
+list.reverse()
+list.print()
+
+
+
+
 
 
