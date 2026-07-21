@@ -122,11 +122,26 @@ class BinarySearchTree{
                return root.right
            }else if(!root.right){
                return root.left
-           }
+           }    
            root.data = this.min(root.right)
            root.right = this.deleteNode(root.right,root.data)
        }
        return root
+   }
+   secondLargest(root){
+    if(!root || (!root.left && !root.right)){
+        return null
+    }
+    let curr = root
+    while(curr){
+        if(curr.right && !curr.right.left && !curr.right.right){
+            return curr.data
+        }
+        if(!curr.right){
+            return this.max(curr.left)
+        }
+        curr = curr.right
+    }
    }
   
 }
@@ -145,6 +160,7 @@ console.log('next')
 bst.levelOrder(bst.root)
 // console.log(bst.min(bst.root))
 // console.log(bst.max(bst.root))
+console.log(bst.secondLargest(bst.root))
 
 
 
