@@ -143,8 +143,48 @@ class BinarySearchTree{
         curr = curr.right
     }
    }
+
+   closestValue(root,target){
+    let closest = root.data 
+    while(root){
+        if(Math.abs(target - root.data) < Math.abs(target - closest)){
+            closest = root.data
+        }
+        if(target < root.data){
+            root = root.left
+        }else if(target > root.data){
+            root = root.right
+        }else{
+            return root.data
+        }
+    }
+      return closest
+   }
+
+
+   printLeafNode(root){
+     if(root === null){
+        return
+     }
+     if(!root.left && !root.right){
+        console.log(root.data)
+     }
+     this.printLeafNode(root.left)
+     this.printLeafNode(root.right)
+   }
   
+
+    sumLeafNode(root){
+        if(root === null){
+            return 0
+        }
+        if(!root.left && !root.right){
+            return root.data
+        }
+        return this.sumLeafNode(root.left) + this.sumLeafNode(root.right)
+    }
 }
+
 
 const bst = new BinarySearchTree()
 bst.insert(10)
@@ -161,6 +201,10 @@ bst.levelOrder(bst.root)
 // console.log(bst.min(bst.root))
 // console.log(bst.max(bst.root))
 console.log(bst.secondLargest(bst.root))
+console.log('closest value => ' + bst.closestValue(bst.root,12))
+bst.printLeafNode(bst.root)
+console.log(bst.sumLeafNode(bst.root))
+
 
 
 
