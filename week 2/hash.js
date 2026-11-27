@@ -13,7 +13,7 @@ class HashTable{
     }
     set(key,value){
         let index = this.hash(key)
-        let bucket = this.table[value]
+        let bucket = this.table[index]
         if(!bucket){
             bucket = [[key,value]]
             this.table[index] = bucket
